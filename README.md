@@ -13,7 +13,7 @@ Tech stack:
 - `Express.js`, the backend which statically serves 
 - `React.js`, the frontend. 
 
-While large scale operations prefer a micro-service paradigm, i.e., the backend, frontend, and database servers are logically separated, this is a small project focusing on the creativity aspect of app development. 
+While large scale operations prefer a micro-service paradigm, i.e., the logical separation between the backend, frontend, and database servers, this is a small project focusing on the creativity aspect of app development. 
 
 If the app is scaling larger than expected, I will consider a more robust, public facing, webapp which considers the following:
 - `micro-service` architecture (making use of services like Docker Compose)
@@ -42,6 +42,7 @@ npm run build
 ```bash
 npm start
 ```
+***Note***: Instructions for running in dev mode soon to come...
 
 ## Usage
 

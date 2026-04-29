@@ -102,7 +102,7 @@ app.post('/register', (req, res) => {
 });
 
 // link workoutRouter
-app.use('/workouts', workoutRouter);
+app.use('/api/workouts', workoutRouter);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(distPath, "index.html"));
