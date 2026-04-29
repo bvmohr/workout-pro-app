@@ -1,0 +1,22 @@
+button {
+    border-color: black;
+    background-color: cadetblue;
+    border-radius: 10px 10px 10px 10px;
+}
+.button-link {
+    color: white;
+    margin: 10px;
+}
+.button-link:link, .button-link:visited {
+    text-decoration: none;
+}
+.button-link:hover, .button-link:active {
+    text-decoration: underline;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

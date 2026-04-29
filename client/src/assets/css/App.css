@@ -1,0 +1,16 @@
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: cadetblue;
+}
+.nav-link {
+    color: white;
+    margin: 10px;
+}
+.nav-link:link, .nav-link:visited {
+    text-decoration: none;
+}
+.nav-link:hover, .nav-link:active {
+    text-decoration: underline;
+}
