@@ -1,6 +1,6 @@
 const express = require('express');
 const workoutRouter = express.Router();
-const { getSplits, getSplit } = require('../database/db');
+const { getSplits, getSplit } = require('../models/db');
 
 
 workoutRouter.get('/', (req, res) => {

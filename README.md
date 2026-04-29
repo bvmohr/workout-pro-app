@@ -1,81 +1,69 @@
-# Workout Pro
-
-
-
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-# Workout Pro | Behind the Scenes
+# Workout Pro
 
 ***Contributor***: Brian Mohr
 
 ## Summary
-This project consists of the `Express.js` server that runs the backend for the *Workout Pro* application. 
+Welcome to `Workout Pro`, the daily fitness journal meant for you! This project consits of a monolithic wep application developed with the sole purpose of exploring web development.
 
-## Prerequisites
-- Must have [Docker](https://docs.docker.com/desktop/) installed
-- Be familiar with making API requests with either `curl` or [`Postman`]()
+Tech stack:
+- `Express.js`, the backend which statically serves 
+- `React.js`, the frontend. 
+
+While large scale operations prefer a micro-service paradigm, i.e., the backend, frontend, and database servers are logically separated, this is a small project focusing on the creativity aspect of app development. 
+
+If the app is scaling larger than expected, I will consider a more robust, public facing, webapp which considers the following:
+- `micro-service` architecture (making use of services like Docker Compose)
+- `nginx` loadbalancer/http proxy between frontend and backend
+- `https` support
+- `OIDC` support
+
+## Prerequisits
+
+- You must have `Node v24` installed as that is the current LTS version I am working with
 
 ## Setup
 1. Clone the repo
 ```bash
-git clone https://github.com/bvmohr/workout_pro_backend.git
+git clone https://github.com/bvmohr/workout-pro-app.git
 ```
-2. Navigate to the root of the directory and build the image
+2. Navigate to the root of the directory and install the dependencies
 ```bash
-docker build -t workout:server .
+npm run install:all
 ```
-3. Run the container
+3. Build the React client distribution
 ```bash
-docker run --name wp_server -d -p 3000:3000 workout:server
+npm run build
+```
+4. Run the Express server (entry point for `Workout Pro`)
+```bash
+npm start
 ```
 
 ## Usage
-1. Split your terminal to send `curl` requests. Register a new account in the application
+
+1. To look at the running web application, navigate to your local browser:
 ```bash
+http://localhost:3000
+```
+2. You can also test the backend independently via `curl` or `Postman` requests. 
+```bash
+# register
 curl -X POST http://localhost:3000/register \
   -H "Content-Type: application/json" \
   -d '{"username": "jonSnow", "password": "pwd123"}'
-```
-2. Login into the application
-```bash
+# login
 curl -X POST http://localhost:3000/login \
-  -H "Content-Type: application/json" \
-  -c cookies.txt \
-  -d '{"username": "jonSnow", "password": "pwd123"}'
-```
-3. View the workouts provided
-```bash
+    -H "Content-Type: application/json" \
+    -c cookies.txt \
+    -d '{"username": "jonSnow", "password": "pwd123"}'
+# view workouts
 curl -X GET http://localhost:3000/workouts -b cookies.txt
 ```
 
 ## Aditional Notes
 
-When making `curl` requests, be sure to have `cookies.txt` when making additional requests after registering.
-
-
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-
-# Workout Pro | The Face of it All
-
-***Contributor***: Brian Mohr
-
-## Summary
-This project consists of the `React.js` client that runs the frontend for the *Workout Pro* application. 
-
-## Setup
-1. Clone the repo
-```bash
-git clone https://github.com/bvmohr/workout_pro_frontend.git
-```
-2. Download the dependencies
-```bash
-npm install
-```
-
-## Usage
-1. Run the React app and visit `http://localhost:5173` on your local machine
-```bash
-npm run dev
-```
+Since this app maintains user sessions, be sure that you are provided with `cookies.txt` after registering via `curl`. You need the cookies to make additional requests afterwards.
