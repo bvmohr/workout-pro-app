@@ -9,8 +9,6 @@ function Home({ className }) {
         <div className={className}>
             <h1>Welcome to Workout Pro</h1>
             <button><Link className="button-link" to="/login">Get Started</Link></button>
-            <button onClick={getData}>Test api call</button>
-            <p>{call}</p>
 	    </div>
     );
 }

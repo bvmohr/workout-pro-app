@@ -46,25 +46,7 @@ npm start
 
 ## Usage
 
-1. To look at the running web application, navigate to your local browser:
+1. To view the running web application, navigate to browser and find the local instance:
 ```bash
 http://localhost:3000
 ```
-2. You can also test the backend independently via `curl` or `Postman` requests. 
-```bash
-# register
-curl -X POST http://localhost:3000/register \
-  -H "Content-Type: application/json" \
-  -d '{"username": "jonSnow", "password": "pwd123"}'
-# login
-curl -X POST http://localhost:3000/login \
-    -H "Content-Type: application/json" \
-    -c cookies.txt \
-    -d '{"username": "jonSnow", "password": "pwd123"}'
-# view workouts
-curl -X GET http://localhost:3000/workouts -b cookies.txt
-```
-
-## Aditional Notes
-
-Since this app maintains user sessions, be sure that you are provided with `cookies.txt` after registering via `curl`. You need the cookies to make additional requests afterwards.
