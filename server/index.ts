@@ -1,7 +1,6 @@
-const http = require('http');
-const app = require('./app');
+import http from 'http';
+import app from './app';
 
-// In the future, consider https support...
 const server = http.createServer(app);
 const PORT = 3000;
 
