@@ -1,27 +1,27 @@
 {
   "name": "workout-pro-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Workout Pro fitness journal tracking application rewritten in Next.js",
+  "private": true,
   "scripts": {
-    "start": "npm start --prefix server",
-    "dev": "./node_modules/.bin/concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
-    "build": "npm run build --prefix server && npm run build --prefix client",
-    "install:all": "npm install --prefix server && npm install --prefix client"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bvmohr/workout-pro-app.git"
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "next": "^15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/bvmohr/workout-pro-app/issues"
-  },
-  "homepage": "https://github.com/bvmohr/workout-pro-app#readme",
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "eslint": "^9.19.0",
+    "eslint-config-next": "^15.1.7",
+    "typescript": "^5.7.3"
   }
 }

@@ -1,127 +1,66 @@
 # Workout Pro
 
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
-
-**Contributor**: Brian Mohr
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
 Welcome to **Workout Pro**, a daily fitness journal application built to track your workouts, manage split routines, and log notes for individual exercises. 
 
-This repository is structured as a monolithic application, with a **React (TypeScript + Vite)** client frontend and an **Express (TypeScript)** server backend.
+This project is built as a unified Next.js (TypeScript) application using the App Router.
 
 ---
 
 ## Features
 
-*   **User Authentication**: JWT-based secure user registration and login stored in Express session cookies.
-*   **Interactive Dashboard**: Select from standard workout splits, check off completed exercises, and view real-time completion statistics.
-*   **Exercise Notes**: Add customized logs/notes for every exercise in a split (e.g., weights used, sets, or reps).
-*   **Built-in Split Templates**:
-    *   **PPL (Push/Pull/Legs)**
-    *   **Bro Split** (Chest, Back, Shoulders, Arms, Legs)
-    *   **Upper/Lower** split
-*   **Unified Development Environment**: Run both frontend client and backend server concurrently using one script.
+- **User Authentication**: Secure register and login via JSON Web Tokens (JWT) stored in HTTP-only cookies.
+- **Interactive Dashboard**: Select split routines, check off completed exercises, view completion statistics, and add custom notes (sets/reps/weight).
+- **Persistent Storage**: Accounts are saved locally in a persistent JSON database (`data/users.json`) so they persist across server restarts.
+- **Built-in Splits**: Includes Push/Pull/Legs (PPL), Bro Split, and Upper/Lower (UL) templates.
+- **Vanilla CSS Layout**: Sleek responsive design utilizing custom dark mode color systems.
 
 ---
 
-## Project Structure
+## Folder Structure
 
 ```text
 workout-pro-app/
-├── client/                 # React frontend client
-│   ├── src/
-│   │   ├── assets/         # App styles and images
-│   │   ├── components/     # Shared components
-│   │   ├── routes/         # Router views (Home, About, Dashboard, Login, etc.)
-│   │   ├── App.tsx         # Main entry, Router definition, AuthContext provider
-│   │   └── main.tsx
-│   ├── package.json        # Frontend scripts and client dependencies
-│   ├── tsconfig.json       # TypeScript frontend config
-│   └── vite.config.js      # Vite configuration
-├── server/                 # Express backend server
-│   ├── models/             # Database model definitions (db.ts)
-│   ├── routes/             # Express API routing (api.ts, workouts.ts)
-│   ├── app.ts              # Express application setup, static serving
-│   ├── index.ts            # HTTP server entry point
-│   ├── package.json        # Backend scripts and server dependencies
-│   └── tsconfig.json       # TypeScript backend config
-├── package.json            # Root workspace scripts and concurrent runners
-└── README.md
+├── app/                  # Next.js App Router
+│   ├── api/              # Backend API routes (Auth, Workouts)
+│   ├── components/       # Shared UI components (NavigationBar)
+│   ├── context/          # Client-side AuthContext
+│   ├── styles/           # Vanilla CSS stylesheets
+│   ├── layout.tsx        # Main Root layout
+│   └── page.tsx          # Home page
+├── data/                 # JSON database storage
+│   └── users.json        # Persistent user records
+├── lib/                  # Backend utilities
+│   └── db.ts             # Workout split lists and DB helpers
+├── middleware.ts         # Route protection middleware
+├── package.json          # Node scripts and dependencies
+└── tsconfig.json         # TypeScript configuration
 ```
 
 ---
 
-## Prerequisites
+## Setup & Running
 
-*   **Node.js**: `v24` (LTS) or higher is recommended.
-*   **npm**: package manager (comes preinstalled with Node).
-
----
-
-## Setup & Installation
-
-### 1. Clone the repository
+### 1. Install Dependencies
 ```bash
-git clone https://github.com/bvmohr/workout-pro-app.git
-cd workout-pro-app
+npm install
 ```
 
-### 2. Install all dependencies
-Installs packages for both the `client` and `server` sub-folders:
-```bash
-npm run install:all
-```
-
----
-
-## Running the Application
-
-### Development Mode 🧪
-To run both the Vite dev-server (frontend) and the ts-node dev-server (backend) simultaneously with hot-reloading:
+### 2. Development Mode
+Run the development server locally:
 ```bash
 npm run dev
 ```
-*   **Frontend client**: [http://localhost:5173](http://localhost:5173) (automatically proxies `/api/*` requests to the server)
-*   **Backend server**: [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Mode 
-To build the static assets and run the Express app as a standalone production server:
-1.  **Build** both frontend and backend configurations:
-    ```bash
-    npm run build
-    ```
-2.  **Start** the production server:
-    ```bash
-    npm start
-    ```
-*   The application will be served statically from the Express server at [http://localhost:3000](http://localhost:3000).
-
----
-
-## API Endpoints Reference
-
-All server API routes are prefixed with `/api`.
-
-### Authentication Routes
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `POST` | `/api/register` | Register a new account (`username`, `password`) |
-| `POST` | `/api/login` | Log in and set session cookie (`username`, `password`) |
-| `POST` | `/api/logout` | Terminate session and clear authentication cookies |
-| `GET` | `/api/me` | Fetch currently logged-in user profile info |
-
-### Workout Routes (Protected by Auth Middleware)
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/workouts/` | Fetch all available workout split names (e.g., `["ppl", "bro", "ul"]`) |
-| `GET` | `/api/workouts/:split` | Fetch specific routines/exercises under the specified split |
-
----
-
-## Acknowledgements & AI Assistance
-
-This codebase was developed with the assistance of **Google Gemini** (via the **Antigravity** agentic AI coding assistant).
+### 3. Production Build
+Compile and start the production build:
+```bash
+npm run build
+npm start
+```
